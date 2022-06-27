@@ -1,24 +1,21 @@
-import { login } from '@/api/login'
-import md5 from 'md5'
+import UserApi from '../../api/user'
+
 export default {
   namespaced: true,
-  state: () => ({}),
-  mutations: {},
+  state: () => ({
+    token: ''
+  }),
+  mutations: {
+    setToken(state, token) {
+      state.token = token
+    }
+  },
   actions: {
-    login(context, userInfo) {
-      const { username, password } = userInfo
-      return new Promise((resolve, reject) => {
-        login({
-          username,
-          password: md5(password)
-        })
-          .then((data) => {
-            resolve()
-          })
-          .catch((err) => {
-            reject(err)
-          })
-      })
+    async login({ commit }, payload) {
+      const response = await UserApi.login(payload)
+      localStorage.setItem('token', response.data.data.token)
+
+      console.log(response)
     }
   }
 }

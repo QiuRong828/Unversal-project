@@ -16,7 +16,7 @@
             <svg-icon icon="user"></svg-icon>
           </el-icon>
         </span>
-        <el-input v-model="loginForm.username" />
+        <el-input v-model.trim="loginForm.username" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
@@ -24,17 +24,17 @@
             <svg-icon icon="password"></svg-icon>
           </el-icon>
         </span>
-        <el-input :type="inputType" v-model="loginForm.password"></el-input>
+        <el-input
+          :type="inputType"
+          v-model.trim="loginForm.password"
+        ></el-input>
         <span class="svg-pwd" @click="handllePassWordStatus">
           <el-icon>
             <svg-icon :icon="passwordIconStatus"></svg-icon>
           </el-icon>
         </span>
       </el-form-item>
-      <el-button
-        class="login-button"
-        type="primary"
-        @click="handleLoginSubmit(LoginForm)"
+      <el-button class="login-button" type="primary" @click="handleLoginSubmit"
         >登录</el-button
       >
     </el-form>
@@ -42,13 +42,19 @@
 </template>
 
 <script setup>
+import util from '../../utils/util'
 import { reactive, ref, computed } from 'vue'
+import { useStore } from 'vuex'
+import router from '../../router/index'
 import { validatePassword } from './rule'
+import md5 from 'md5'
 
+const store = useStore()
 const inputType = ref('password')
+const LoginForm = ref()
 
 const loginForm = reactive({
-  username: 'admin',
+  username: 'super-admin',
   password: '123456'
 })
 
@@ -73,15 +79,26 @@ const passwordIconStatus = computed(() => {
   return inputType.value === 'password' ? 'eye' : 'eye-open'
 })
 
-const handleLoginSubmit = async (formName) => {
-  if (!formName) return
-  await formName.validate((valid) => {
+/**
+ * 登录方式
+ */
+const handleLoginSubmit = async () => {
+  if (!LoginForm.value) return
+  await LoginForm.value.validate(async (valid) => {
     if (valid) {
-      alert('登录')
+      const newLoginForm = util.deepCopy(loginForm)
+      newLoginForm.password = md5(newLoginForm.password)
+
+      store.dispatch('user/login', newLoginForm)
+
+      router.push('/home')
     }
   })
 }
 
+/**
+ * 密码框状态切换方法
+ */
 const handllePassWordStatus = () => {
   inputType.value = inputType.value === 'password' ? 'text' : 'password'
 }
