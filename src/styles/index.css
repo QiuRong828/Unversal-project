@@ -12,13 +12,13 @@
 #app .main-container {
   min-height: 100%;
   transition: margin-left 0.28s;
-  margin-left: 210px;
+  margin-left: 100px;
   position: relative;
 }
 
 #app .sidebar-container {
   transition: width 0.28s;
-  width: 210px !important;
+  width: 100px !important;
   height: 100%;
   position: fixed;
   top: 0;
@@ -74,12 +74,12 @@
 }
 
 #app .sidebar-container .is-active > .el-submenu__title {
-  color: #f4f4f5 !important;
+  color: #fff !important;
 }
 
 #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title,
 #app .sidebar-container .el-submenu .el-menu-item {
-  min-width: 210px !important;
+  min-width: 100px !important;
 }
 
 #app .hideSidebar .sidebar-container {
@@ -136,7 +136,7 @@
 }
 
 #app .el-menu--collapse .el-menu .el-submenu {
-  min-width: 210px !important;
+  min-width: 100px !important;
 }
 
 #app .withoutAnimation .main-container,

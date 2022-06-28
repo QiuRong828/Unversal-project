@@ -1,16 +1,14 @@
-// $sideBarWidth:100px;
-// $subMenuActiveText:#f0f0f0;
 #app {
   .main-container {
     min-height: 100%;
     transition: margin-left 0.28s;
-    margin-left: 100px;   //1
+    margin-left: $sideBarWidth;
     position: relative;
   }
 
   .sidebar-container {
     transition: width 0.28s;
-    width: 100px !important;   //2
+    width: $sideBarWidth !important;
     height: 100%;
     position: fixed;
     top: 0;
@@ -65,16 +63,16 @@
     .el-menu {
       border: none;
       height: 100%;
-      width: 100% !important;   
+      width: 100% !important;
     }
 
     .is-active > .el-submenu__title {
-      color: #fff !important;  //3
+      color: $subMenuActiveText !important;
     }
 
     & .nest-menu .el-submenu > .el-submenu__title,
     & .el-submenu .el-menu-item {
-      min-width: 100px !important;   //4
+      min-width: $sideBarWidth !important;
     }
   }
 
@@ -140,7 +138,7 @@
   }
 
   .el-menu--collapse .el-menu .el-submenu {
-    min-width:100px !important;
+    min-width: $sideBarWidth !important;
   }
 
   .withoutAnimation {

@@ -4,6 +4,8 @@ import md5 from 'md5'
 
 import loading from './loading'
 
+import store from '@/store'
+
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
@@ -12,6 +14,10 @@ const service = axios.create({
 // 添加请求拦截器
 service.interceptors.request.use(
   function (config) {
+    if (store.getters.token) {
+      config.headers.Authorzation = `Bearer ${store.getters.token}`
+    }
+
     loading.open()
 
     // 在发送请求之前做些什么

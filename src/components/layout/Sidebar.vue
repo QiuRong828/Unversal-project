@@ -1,5 +1,5 @@
 <template>
-  <div class="">cebian</div>
+  <div class="sidebar">cebian</div>
 </template>
 
 <script setup>

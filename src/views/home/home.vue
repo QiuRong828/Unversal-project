@@ -3,7 +3,7 @@
     <!-- 左侧 menu -->
     <sidebar
       class="sidebar-container"
-      :style="{ backgroundcolor: variables.menuBg }"
+      :style="{ backgroundColor: variables.menuBg }"
     />
     <div class="main-container">
       <div class="fixed-header">
@@ -17,14 +17,14 @@
 </template>
 
 <script setup>
-import variables from '../../styles/variables.scss'
+import variables from '@/styles/variables.module.scss'
 import Navbar from '../../components/layout/Navbar.vue'
 import Sidebar from '../../components/layout/Sidebar.vue'
 import AppMain from '../../components/layout/AppMain.vue'
 </script>
 <style lang="scss" scoped>
 @import '~@/styles/mixin.scss';
-@import '~@/styles/variables.scss';
+@import '~@/styles/variables.module.scss';
 
 .app-wrapper {
   @include clearfix;
