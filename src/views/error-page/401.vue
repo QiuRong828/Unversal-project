@@ -1,5 +1,5 @@
 <template>
-  <div class="">顶部navbar</div>
+  <div class="">401</div>
 </template>
 
 <script setup>

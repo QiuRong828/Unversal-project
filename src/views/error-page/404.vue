@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">cebian</div>
+  <div class="">404</div>
 </template>
 
 <script setup>
