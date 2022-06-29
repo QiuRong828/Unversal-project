@@ -1,32 +1,25 @@
 import UserApi from '../../api/user'
-
-import { getUserInfo } from '@/api/sys'
-
+import { setItem, getItem } from '../../utils/storage'
 export default {
   namespaced: true,
   state: () => ({
-    token: '',
-    userInfo: {}
+    token: getItem('token') || ''
   }),
   mutations: {
     setToken(state, token) {
       state.token = token
-    },
-    setUserInfo(state, userInfo) {
-      state.userInfo = userInfo
+      setItem('token', token)
     }
   },
   actions: {
     async login({ commit }, payload) {
-      const response = await UserApi.login(payload)
-      localStorage.setItem('token', response.data.data.token)
-
-      console.log(response)
-    },
-    async getUserInfo(content) {
-      const res = await getUserInfo()
-      this.commit('user/setUserInfo', res)
-      return res
+      try {
+        const response = await UserApi.login(payload)
+        commit('setToken', response.token)
+        return response
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }
