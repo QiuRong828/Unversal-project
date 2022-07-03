@@ -5,7 +5,8 @@ export default {
   namespaced: true,
   state: () => ({
     token: getItem('token') || '',
-    userInfo: {}
+    userInfo: {},
+    userList: []
   }),
   mutations: {
     setToken(state, token) {
@@ -14,6 +15,10 @@ export default {
     },
     setUserInfo(state, userInfo) {
       state.userInfo = userInfo
+    },
+    setUSerList(state, userList) {
+      state.userList = userList
+      console.log(userList, 'user')
     }
   },
   actions: {

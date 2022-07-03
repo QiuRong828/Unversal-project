@@ -15,11 +15,11 @@
         </el-icon>
         <span>{{ item.meta.title }}</span>
       </template>
-      <SidebarMenuItem
+      <MenuItem
         v-for="(childItem, index) in item.children"
         :menuList="childItem"
         :key="index"
-      ></SidebarMenuItem>
+      ></MenuItem>
     </el-sub-menu>
   </template>
 </template>
