@@ -37,4 +37,8 @@ const props = defineProps({
 // eslint-disable-next-line vue/no-setup-props-destructure
 const item = props.menuList
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.el-icon {
+  width: 70px;
+}
+</style>

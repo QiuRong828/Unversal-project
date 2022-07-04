@@ -14,7 +14,9 @@
         <template v-slot:action="{ row }">
           <el-button @click="orow(row)" type="primary"> 查看</el-button>
           <el-button @click="orow(row)" type="info"> 角色</el-button>
-          <el-button @click="orow(row)" type="danger"> 删除</el-button>
+          <el-button @click="handledelete(row.id)" type="danger">
+            删除</el-button
+          >
         </template>
       </Table>
       <br />
@@ -71,6 +73,10 @@ const change = (obj) => {
   // query = obj
   console.log(query, 'query')
   getUsers()
+}
+
+const handledelete = (index) => {
+  dataList.value.splice(index, 1)
 }
 </script>
 <style scoped lang="scss"></style>

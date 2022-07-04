@@ -1,21 +1,26 @@
 <template>
-  <div class="navbar clearfix">
-    <div class="navbar-left">left</div>
-    <div class="navbar-right">
-      <el-dropdown trigger="click" @command="handleCommand">
-        <span class="el-dropdown-link">
-          <el-avatar shape="square" :size="40" :src="avatarUrl" />
-        </span>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item command="home">首页</el-dropdown-item>
-            <el-dropdown-item command="profile">课程主页</el-dropdown-item>
-            <el-dropdown-item command="logout" divided
-              >退出登录</el-dropdown-item
-            >
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+  <div>
+    <div class="navbar clearfix">
+      <div class="navbar-left">
+        <Hamburger class="hamburger-container"></Hamburger>
+        <Breadcrumb></Breadcrumb>
+      </div>
+      <div class="navbar-right">
+        <el-dropdown trigger="click" @command="handleCommand">
+          <span class="el-dropdown-link">
+            <el-avatar shape="square" :size="40" :src="avatarUrl" />
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="home">首页</el-dropdown-item>
+              <el-dropdown-item command="profile">课程主页</el-dropdown-item>
+              <el-dropdown-item command="logout" divided
+                >退出登录</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +28,8 @@
 <script setup>
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+import Breadcrumb from '../components/Breadcrumb.vue'
+import Hamburger from '../components/Hamburger.vue'
 import { useStore } from 'vuex'
 const store = useStore()
 const router = useRouter()
@@ -79,6 +86,9 @@ const handleLogout = async () => {
 
   .el-avatar {
     background: none;
+  }
+  .hamburger-container {
+    float: left;
   }
 }
 </style>

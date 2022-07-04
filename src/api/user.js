@@ -20,8 +20,23 @@ const getUserManage = (data) => {
   })
 }
 
+const getUserRole = () => {
+  return request({
+    url: '/role/list',
+    method: 'get'
+  })
+}
+
+const getUserPermission = () => {
+  return request({
+    url: '/permission/list',
+    method: 'get'
+  })
+}
 export default {
   login,
   getUserInfo,
-  getUserManage
+  getUserManage,
+  getUserRole,
+  getUserPermission
 }

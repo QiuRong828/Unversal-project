@@ -1,6 +1,12 @@
 <template>
   <div>
-    <el-table :data="props.data" border style="width: 100%">
+    <el-table
+      :data="props.data"
+      row-key="id"
+      default-expand-all
+      border
+      style="width: 100%"
+    >
       <el-table-column
         v-for="item in props.cols"
         :key="item"
@@ -32,6 +38,9 @@ const props = defineProps({
     default: () => []
   },
   total: {
+    type: Number
+  },
+  id: {
     type: Number
   }
 })
